@@ -6,3 +6,8 @@ start:
 
 publish:
 	npm publish --dry-run
+
+git:
+	git add *
+	git commit -m "last" 
+	git push
