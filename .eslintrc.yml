@@ -3,6 +3,7 @@
 # https://eslint.org/docs/user-guide/configuring#specifying-environments
 env:
   node: true
+  es6: true
   jest: true
 
 extends:
@@ -10,3 +11,4 @@ extends:
 
 rules:
   no-console: 0
+  import/extensions: 0
