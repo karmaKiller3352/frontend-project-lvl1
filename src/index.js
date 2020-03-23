@@ -2,40 +2,65 @@ import readlineSync from 'readline-sync';
 
 let name = '';
 
+const maxRound = 3;
+
+export const mess = {
+  greets: 'Welcome to the Brain Games!',
+  hi: 'Hello, ',
+  name: 'May I have your name? ',
+  evengame: 'Answer \'yes\' if the number is even, otherwise answer \'no\'',
+  calc: 'What is the result of the expression?',
+  correct: 'Correct!',
+  fail: 'Let\'s try again, ',
+  win: 'Congratulations, ',
+  question: 'Question: ',
+  answer: 'Your answer: ',
+  wrong: ' is wrong answer ;(. Correct answer was ',
+};
+
+const showWrong = (wrong, right) => {
+  console.log(`"${wrong}" ${mess.wrong} "${right}".`);
+};
+
+export const showMessage = (message, str = '') => {
+  if (str) {
+    console.log(`${message + str}`);
+  } else {
+    console.log(`${message}`);
+  }
+};
 const greetings = () => {
-  console.log('Welcome to the Brain Games!');
-  name = readlineSync.question('May I have your name? ');
-  console.log(`Hello, ${name}`);
+  showMessage(mess.greets);
+  name = readlineSync.question(mess.name);
+  showMessage(mess.hi, name);
 };
 
-const evenGame = (questionsCount) => {
-  console.log('Answer \'yes\' if the number is even, otherwise answer \'no\'');
+export const randomNumber = (maxNumber = 100) => Math.floor(Math.random() * maxNumber);
 
-  const isEven = (num) => (!(num % 2) ? 'yes' : 'no');
-  const randomNumber = () => Math.round(Math.random() * 100);
-
-  let askCounter = 0;
-
-  const ask = () => {
-    if (askCounter === questionsCount) {
-      console.log(`Congratulations, ${name}`);
-    } else {
-      const num = randomNumber();
-      console.log(`Question: ${num}`);
-      const answer = readlineSync.question('Your answer: ');
-      if (isEven(num) === answer) {
-        console.log('Correct!');
-        askCounter += 1;
-        ask();
-      } else {
-        console.log(`Let's try again, ${name}!`);
-      }
+const playGame = (turn, game, rules) => {
+  let round = turn;
+  if (round === maxRound) {
+    showMessage(mess.win, name);
+  } else {
+    if (round === 0) {
+      greetings();
+      showMessage(rules);
     }
-  };
-
-  ask();
+    const { result, received, right } = game();
+    if (result) {
+      showMessage(mess.correct);
+      round += 1;
+      playGame(round, game, rules);
+    } else {
+      showWrong(received, right);
+      showMessage(mess.fail, name);
+    }
+  }
 };
+
+// playGame(round, evenGame, mess.evengame );
+
 export {
   greetings,
-  evenGame,
+  playGame,
 };
