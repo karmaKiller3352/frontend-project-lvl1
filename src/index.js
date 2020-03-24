@@ -12,6 +12,7 @@ const mess = {
   calc: 'What is the result of the expression?',
   gcdgame: 'Find the greatest common divisor of given numbers.',
   progressiongame: 'What number is missing in the progression?',
+  primegame: 'Answer "yes" if given number is prime. Otherwise answer "no".',
   correct: 'Correct!',
   fail: 'Let\'s try again, ',
   win: 'Congratulations, ',

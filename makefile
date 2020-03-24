@@ -7,6 +7,9 @@ start:
 calc:
 	npx node bin/brain-calc.js
 
+prime:
+	npx node  bin/brain-prime.js
+
 publish:
 	npm publish --dry-run
 
