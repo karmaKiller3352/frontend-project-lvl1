@@ -1,15 +1,14 @@
 import readlineSync from 'readline-sync';
 import { mess, randomNumber } from '../index.js';
 
+const gcdGame = (n1, n2) => ((n1 % n2 === 0) ? n2 : gcdGame(n2, n1 % n2));
+
 export default () => {
-  const num1 = randomNumber(10);
-  const num2 = randomNumber(10);
-  const operations = ['+', '-', '*'];
-  const rand = randomNumber(operations.length);
-  const str = `${num1 + operations[rand] + num2}`;
-  console.log(`${mess.question + str}`);
-  const counted = String(eval(str));
+  const num1 = randomNumber();
+  const num2 = randomNumber();
+  console.log(`${mess.question} ${num1} ${num2}`);
   const answer = readlineSync.question(mess.answer);
+  const counted = String(gcdGame(num1, num2));
   const results = {
     result: true,
     received: answer,

@@ -1,11 +1,11 @@
 import readlineSync from 'readline-sync';
-import { mess, randomNumber, showMessage } from '../index.js';
+import { mess, randomNumber } from '../index.js';
 
 const isEven = (num) => (!(num % 2) ? 'yes' : 'no');
 
 export default () => {
   const num = randomNumber();
-  showMessage(mess.question, num);
+  console.log(`${mess.question + num}`);
   const answer = readlineSync.question(mess.answer);
   const results = {
     result: true,

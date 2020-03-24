@@ -7,11 +7,8 @@ start:
 calc:
 	npx node bin/brain-calc.js
 
-even:
-	npx node bin/brain-even.js
-
-publish:
-	npm publish --dry-run
+video:
+	asciinema rec
 
 git:
 	git add *

@@ -4,56 +4,47 @@ let name = '';
 
 const maxRound = 3;
 
-export const mess = {
+const mess = {
   greets: 'Welcome to the Brain Games!',
   hi: 'Hello, ',
   name: 'May I have your name? ',
   evengame: 'Answer \'yes\' if the number is even, otherwise answer \'no\'',
   calc: 'What is the result of the expression?',
+  gcdgame: 'Find the greatest common divisor of given numbers.',
   correct: 'Correct!',
   fail: 'Let\'s try again, ',
   win: 'Congratulations, ',
   question: 'Question: ',
   answer: 'Your answer: ',
-  wrong: ' is wrong answer ;(. Correct answer was ',
+  wrong: 'is wrong answer ;(. Correct answer was',
 };
 
-const showWrong = (wrong, right) => {
-  console.log(`"${wrong}" ${mess.wrong} "${right}".`);
-};
-
-export const showMessage = (message, str = '') => {
-  if (str) {
-    console.log(`${message + str}`);
-  } else {
-    console.log(`${message}`);
-  }
-};
 const greetings = () => {
-  showMessage(mess.greets);
+  console.log(mess.greets);
   name = readlineSync.question(mess.name);
-  showMessage(mess.hi, name);
+  console.log(`${mess.hi + name}`);
 };
 
-export const randomNumber = (maxNumber = 100) => Math.floor(Math.random() * maxNumber);
+const randomNumber = (maxNumber = 100) => Math.floor(Math.random() * maxNumber);
 
-const playGame = (turn, game, rules) => {
+
+const playGame = (game, rules, turn = 0) => {
   let round = turn;
   if (round === maxRound) {
-    showMessage(mess.win, name);
+    console.log(`${mess.win + name}`);
   } else {
     if (round === 0) {
       greetings();
-      showMessage(rules);
+      console.log(rules);
     }
     const { result, received, right } = game();
     if (result) {
-      showMessage(mess.correct);
+      console.log(mess.correct);
       round += 1;
-      playGame(round, game, rules);
+      playGame(game, rules, round);
     } else {
-      showWrong(received, right);
-      showMessage(mess.fail, name);
+      console.log(`"${received}" ${mess.wrong} "${right}"`);
+      console.log(`${mess.fail + name}`);
     }
   }
 };
@@ -63,4 +54,6 @@ const playGame = (turn, game, rules) => {
 export {
   greetings,
   playGame,
+  mess,
+  randomNumber,
 };
