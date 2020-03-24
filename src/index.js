@@ -1,9 +1,10 @@
 import readlineSync from 'readline-sync';
 
-let name = '';
+let name = ''; // глобальная переменная для имени
 
-const maxRound = 3;
+const maxRound = 3; // количество задаваемых раундов
 
+// массив сообщений
 const mess = {
   greets: 'Welcome to the Brain Games!',
   hi: 'Hello, ',
@@ -21,15 +22,18 @@ const mess = {
   wrong: 'is wrong answer ;(. Correct answer was',
 };
 
+// запрос имени и приветсвие
 const greetings = () => {
   console.log(mess.greets);
   name = readlineSync.question(mess.name);
   console.log(`${mess.hi + name}`);
 };
 
+// генератор случайных чисел, по умолчанию максимальное число равно 100, для упрощений подсчетов
 const randomNumber = (maxNumber = 100) => Math.floor(Math.random() * maxNumber);
 
-
+// рекурсивная функция, вызывающая выбранную игру необходимое количество раз
+// и выводящая правила игры
 const playGame = (game, rules, turn = 0) => {
   let round = turn;
   if (round === maxRound) {
@@ -50,8 +54,6 @@ const playGame = (game, rules, turn = 0) => {
     }
   }
 };
-
-// playGame(round, evenGame, mess.evengame );
 
 export {
   greetings,
