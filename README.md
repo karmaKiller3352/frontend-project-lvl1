@@ -9,6 +9,6 @@ Brain-calc game
 
 [![asciicast](https://asciinema.org/a/IyzAhPlp7GnN0FrDp6w9RwOXN.svg)](https://asciinema.org/a/IyzAhPlp7GnN0FrDp6w9RwOXN)
 
-Brain-gcd
+Brain-gcd game
 
 [![asciicast](https://asciinema.org/a/x9B4LroWvi7yjLGGoM9hXXyzo.svg)](https://asciinema.org/a/x9B4LroWvi7yjLGGoM9hXXyzo)
