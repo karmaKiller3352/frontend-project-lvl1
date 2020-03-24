@@ -7,6 +7,12 @@ start:
 calc:
 	npx node bin/brain-calc.js
 
+publish:
+	npm publish --dry-run
+
+pr:
+	npx node bin/brain-progression.js
+
 video:
 	asciinema rec
 
@@ -17,3 +23,6 @@ git:
 
 lint:
 	npx eslint .
+
+fix:
+	npx eslint . --fix

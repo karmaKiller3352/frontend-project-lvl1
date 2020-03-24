@@ -11,6 +11,7 @@ const mess = {
   evengame: 'Answer \'yes\' if the number is even, otherwise answer \'no\'',
   calc: 'What is the result of the expression?',
   gcdgame: 'Find the greatest common divisor of given numbers.',
+  progressiongame: 'What number is missing in the progression?',
   correct: 'Correct!',
   fail: 'Let\'s try again, ',
   win: 'Congratulations, ',
