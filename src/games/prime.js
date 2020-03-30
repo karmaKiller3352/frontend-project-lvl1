@@ -1,25 +1,21 @@
-import readlineSync from 'readline-sync';
-import { mess, randomNumber } from '../index.js';
+import { randomNumber, playGame } from '../index.js';
 
 const isPrime = (num) => {
-  if (num === 1 || num === 0) return 'no';
+  if (num === 1 || num === 0) return false;
   for (let i = 2; i < num; i += 1) {
-    if (num % i === 0) return 'no';
+    if (num % i === 0) return false;
   }
-  return 'yes';
+  return true;
 };
 
-export default () => {
+const rules = 'Answer "yes" if given number is prime. Otherwise answer "no".';
+
+const generateData = () => {
   const num = randomNumber();
-  console.log(`${mess.question + num}`);
-  const answer = readlineSync.question(mess.answer);
-  const results = {
-    result: true,
-    received: answer,
-    right: isPrime(num),
+  return {
+    question: num,
+    rightAnswer: isPrime(num) ? 'yes' : 'no',
   };
-  if (isPrime(num) !== answer) {
-    results.result = false;
-  }
-  return results;
 };
+
+export default () => playGame(rules, generateData);

@@ -1,7 +1,10 @@
 {
   "name": "frontend-project-lvl1",
   "version": "1.0.0",
-  "description": "",
+  "description": "Brain games. Directed by Robert B. Weide.",
+  "keywords": [
+    "brain games, even game, calc game, prime game, progression"
+  ],
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

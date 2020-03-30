@@ -1,19 +1,15 @@
-import readlineSync from 'readline-sync';
-import { mess, randomNumber } from '../index.js';
+import { randomNumber, playGame } from '../index.js';
 
-const isEven = (num) => (!(num % 2) ? 'yes' : 'no');
+const isEven = (num) => num % 2 === 0;
 
-export default () => {
+const rules = 'Answer "yes" if the number is even, otherwise answer "no"';
+
+const generateData = () => {
   const num = randomNumber();
-  console.log(`${mess.question + num}`);
-  const answer = readlineSync.question(mess.answer);
-  const results = {
-    result: true,
-    received: answer,
-    right: isEven(num),
+  const answer = isEven(num) ? 'yes' : 'no';
+  return {
+    question: num,
+    rightAnswer: answer,
   };
-  if (isEven(num) !== answer) {
-    results.result = false;
-  }
-  return results;
 };
+export default () => playGame(rules, generateData);

@@ -12,3 +12,6 @@ lint:
 
 fix:
 	npx eslint . --fix
+
+game:
+	npx node bin/brain-progression.js
