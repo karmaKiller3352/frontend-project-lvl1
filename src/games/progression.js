@@ -1,4 +1,5 @@
-import { randomNumber, playGame } from '../index.js';
+import playGame from '../index.js';
+import randomNumber from '../utils.js';
 
 // создание прогрессии с заданными параметрами
 const makeProgression = (start, step, length) => {
@@ -30,7 +31,7 @@ const generateData = () => {
 
   return {
     question: makeTask(progression, randIndex),
-    rightAnswer: findElement(startNumber, step, randIndex),
+    rightAnswer: String(findElement(startNumber, step, randIndex)),
   };
 };
 

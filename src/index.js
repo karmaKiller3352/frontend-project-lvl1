@@ -1,9 +1,7 @@
 import readlineSync from 'readline-sync';
 
-const maxRound = 3; // максимальное количество задаваемых раундов
 
-// генератор случайных чисел, по умолчанию максимальное число равно 100, для упрощений подсчетов
-const randomNumber = (maxNumber = 100) => Math.floor(Math.random() * maxNumber);
+const maxRound = 3; // максимальное количество задаваемых раундов
 
 // запуск игры с внутренней рекурсивоной функцией, запускающейся нужное количество раз
 // (может стоило сделать циклом?) показалось целесообразнее запустить рекурсивно
@@ -12,23 +10,25 @@ const playGame = (rules, generateData) => {
   const name = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${name}!`);
   console.log(rules);
-  let round = 1;
 
-  const start = () => {
-    const data = generateData();
-    console.log(`Question: ${data.question}`);
+  const start = (count) => {
+    let round = count;
+    const { question, rightAnswer } = generateData();
+    console.log(`Question: ${question}`);
     const answer = readlineSync.question('Your answer: ');
-    if (answer === String(data.rightAnswer)) {
+    if (answer === rightAnswer) {
       console.log('Correct');
       round += 1;
-      return (round <= maxRound) ? start() : console.log(`Congratulations, ${name}!`);
+      if (round <= maxRound) {
+        start(round);
+      } else {
+        console.log(`Congratulations, ${name}!`);
+      }
+    } else {
+      console.log(`"${answer}" is wrong answer ;(. Correct answer was "${rightAnswer}".\nLet's try again, ${name}!`);
     }
-    return console.log(`"${answer}" is wrong answer ;(. Correct answer was "${data.rightAnswer}".\nLet's try again, ${name}!`);
   };
-  start();
+  start(1); // стартуем игру и передаем номер раунда
 };
 
-export {
-  playGame,
-  randomNumber,
-};
+export default playGame;

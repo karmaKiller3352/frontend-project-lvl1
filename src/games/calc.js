@@ -1,4 +1,5 @@
-import { randomNumber, playGame } from '../index.js';
+import playGame from '../index.js';
+import randomNumber from '../utils.js';
 
 const toCount = (number1, number2, sign) => {
   switch (sign) {
@@ -9,7 +10,7 @@ const toCount = (number1, number2, sign) => {
     case '*':
       return (number1 * number2);
     default:
-      return console.log('Error! Not used operation');
+      throw new Error('Error! Not used operation');
   }
 };
 
@@ -20,10 +21,10 @@ const generateData = () => {
   const num1 = randomNumber(10);
   const num2 = randomNumber(10);
   const operations = ['+', '-', '*'];
-  const rand = randomNumber(operations.length);
+  const rand = randomNumber(operations.length - 1); // выбираем случайную операцию
   return {
     question: `${num1 + operations[rand] + num2}`,
-    rightAnswer: toCount(num1, num2, operations[rand]),
+    rightAnswer: String(toCount(num1, num2, operations[rand])),
   };
 };
 
