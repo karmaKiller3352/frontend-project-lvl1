@@ -3,32 +3,26 @@ import readlineSync from 'readline-sync';
 
 const maxRound = 3; // максимальное количество задаваемых раундов
 
-// запуск игры с внутренней рекурсивоной функцией, запускающейся нужное количество раз
-// (может стоило сделать циклом?) показалось целесообразнее запустить рекурсивно
-const playGame = (rules, generateData) => {
+// запуск игры решил переделать циклом, т.к. проще реализация, требующая меньше условий
+
+const playGame = (description, generateData) => {
   console.log('Welcome to the Brain Games!');
   const name = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${name}!`);
-  console.log(rules);
+  console.log(description);
 
-  const start = (count) => {
-    let round = count;
+  for (let i = 0; i < maxRound; i += 1) {
     const { question, rightAnswer } = generateData();
     console.log(`Question: ${question}`);
     const answer = readlineSync.question('Your answer: ');
     if (answer === rightAnswer) {
       console.log('Correct');
-      round += 1;
-      if (round <= maxRound) {
-        start(round);
-      } else {
-        console.log(`Congratulations, ${name}!`);
-      }
     } else {
       console.log(`"${answer}" is wrong answer ;(. Correct answer was "${rightAnswer}".\nLet's try again, ${name}!`);
+      return;
     }
-  };
-  start(1); // стартуем игру и передаем номер раунда
+  }
+  console.log(`Congratulations, ${name}!`);
 };
 
 export default playGame;

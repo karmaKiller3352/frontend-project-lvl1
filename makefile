@@ -14,4 +14,4 @@ fix:
 	npx eslint . --fix
 
 game:
-	npx bin/brain-progression.js
+	node bin/brain-progression.js

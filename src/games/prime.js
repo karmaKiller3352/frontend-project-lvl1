@@ -2,21 +2,21 @@ import playGame from '../index.js';
 import randomNumber from '../utils.js';
 
 const isPrime = (num) => {
-  if (num === 1 || num === 0) return false;
-  for (let i = 2; i < num; i += 1) {
+  if (num <= 1) return false;
+  for (let i = 2; i <= num / 2; i += 1) {
     if (num % i === 0) return false;
   }
   return true;
 };
 
-const rules = 'Answer "yes" if given number is prime. Otherwise answer "no".';
+const description = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
 const generateData = () => {
-  const num = randomNumber();
+  const num = randomNumber(-1, 100);
   return {
     question: num,
     rightAnswer: isPrime(num) ? 'yes' : 'no',
   };
 };
 
-export default () => playGame(rules, generateData);
+export default () => playGame(description, generateData);
