@@ -22,9 +22,9 @@ const generateData = () => {
   const num2 = randomNumber(1, 10);
   const operations = ['+', '-', '*'];
   // выбираем случайную операцию
-  const randomOperation = operations[randomNumber(operations.length - 1)];
+  const randomOperation = operations[randomNumber(0, operations.length - 1)];
   return {
-    question: `${num1 + randomOperation + num2}`,
+    question: `${num1} ${randomOperation} ${num2}`,
     rightAnswer: String(calculate(num1, num2, randomOperation)),
   };
 };

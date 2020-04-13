@@ -18,7 +18,8 @@ const playGame = (description, generateData) => {
     if (answer === rightAnswer) {
       console.log('Correct');
     } else {
-      console.log(`"${answer}" is wrong answer ;(. Correct answer was "${rightAnswer}".\nLet's try again, ${name}!`);
+      console.log(`"${answer}" is wrong answer ;(. Correct answer was "${rightAnswer}".`);
+      console.log(`Let's try again, ${name}!`);
       return;
     }
   }
