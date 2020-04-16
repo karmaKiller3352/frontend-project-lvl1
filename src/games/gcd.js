@@ -13,4 +13,5 @@ const generateData = () => {
     rightAnswer: String(gcdGame(num1, num2)),
   };
 };
+
 export default () => playGame(description, generateData);

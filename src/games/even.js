@@ -13,4 +13,5 @@ const generateData = () => {
     rightAnswer,
   };
 };
+
 export default () => playGame(description, generateData);
